@@ -1,9 +1,9 @@
-
+import os
 import openai
 from google.cloud import storage
 from google.cloud import speech
 
-openai.api_key = #get the key
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def audioprocess(audio_file):
 
