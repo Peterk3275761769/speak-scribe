@@ -10,6 +10,7 @@ class AudioRecorder extends Component {
         blob: null,
         url: null,
       },
+      outputText : "Placeholder text"
     };
   }
 
@@ -62,6 +63,10 @@ class AudioRecorder extends Component {
     return (
       <>
         <div className='recorder'>
+          <textarea readonly={true} className='output-area' rows={8} cols={50}>
+            {this.state.outputText}
+          </textarea>
+
           <ReactMic
             record={this.state.isRecording}
             onStop={this.onStop}
