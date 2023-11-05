@@ -60,21 +60,24 @@ class AudioRecorder extends Component {
 
   render() {
     return (
-      <div className='recorder'>
-        <ReactMic
-          record={this.state.isRecording}
-          onStop={this.onStop}
-          onStart={this.onStart}
-          mimeType="audio/flac"
-        />
-        
-        <img
-          className={`record-button ${this.state.isRecording ? 'recording' : ''}`}
-          src={this.state.isRecording ? 'stop_button.png' : 'record_button.png'}
-          alt={this.state.isRecording ? 'Stop Recording' : 'Start Recording'}
-          onClick={this.toggleRecording}
-        />
-      </div>
+      <>
+        <div className='recorder'>
+          <ReactMic
+            record={this.state.isRecording}
+            onStop={this.onStop}
+            onStart={this.onStart}
+            mimeType="audio/flac"
+          />
+          
+          <img
+            className={`record-button ${this.state.isRecording ? 'recording' : ''}`}
+            src={this.state.isRecording ? 'stop_button.png' : 'record_button.png'}
+            alt={this.state.isRecording ? 'Stop Recording' : 'Start Recording'}
+            onClick={this.toggleRecording}
+          />
+        </div>
+      </>
+      
     );
   }
 }
