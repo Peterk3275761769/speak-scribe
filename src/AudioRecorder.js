@@ -10,7 +10,7 @@ class AudioRecorder extends Component {
         blob: null,
         url: null,
       },
-      outputText : "Placeholder text"
+      outputText: `TO-DO...`,
     };
   }
 
@@ -45,6 +45,7 @@ class AudioRecorder extends Component {
       if (response.status === 200) {
         const data = await response.json();
         console.log('message', data);
+        this.setState({ outputText: data.message });
       } else {
         console.error('Response status is not OK:', response.status);
         // Handle error if needed
@@ -56,16 +57,19 @@ class AudioRecorder extends Component {
   }
 
   toggleRecording = () => {
-    this.setState(prevState => ({ isRecording: !prevState.isRecording }));
+    this.setState((prevState) => ({ isRecording: !prevState.isRecording }));
   }
 
   render() {
     return (
       <>
+        <div className='big-logo'>
+          <img src='speakscribe-logo.png'/>
+        </div>
         <div className='recorder'>
-          <textarea readonly={true} className='output-area' rows={8} cols={50}>
+          <pre className='output-area'>
             {this.state.outputText}
-          </textarea>
+          </pre>
 
           <ReactMic
             record={this.state.isRecording}
@@ -73,7 +77,7 @@ class AudioRecorder extends Component {
             onStart={this.onStart}
             mimeType="audio/flac"
           />
-          
+
           <img
             className={`record-button ${this.state.isRecording ? 'recording' : ''}`}
             src={this.state.isRecording ? 'stop_button.png' : 'record_button.png'}
@@ -82,9 +86,8 @@ class AudioRecorder extends Component {
           />
         </div>
       </>
-      
     );
   }
 }
-
+ 
 export default AudioRecorder;

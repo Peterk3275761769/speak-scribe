@@ -2,18 +2,21 @@ body{
   background-color: #2b2d42;
 }
 
-.recorder{
-  width: 30%;
+.recorder {
+  width: 40%;
   display: flex;
   flex-direction: column;
   margin: auto;
-  margin-top: 40vh;
+  padding: 3vh;
+  background-color: #464a55;
+  border-radius: 20px;
 }
 
 .record-button{
   -webkit-user-drag: none;
   margin: auto;
-  width: 4vw;
+  padding-top: 20px;
+  width: 75px;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
@@ -28,5 +31,18 @@ textarea{
 
 .output-area{
   margin-bottom: 20px;
+  padding: 10px;
+  background-color: white;
+  height: 30vh;
+  overflow-y: scroll;
+  font-size: large;
+  line-height: 30px;
+  overflow-wrap: break-word;
 }
 
+.big-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5vh;
+}
