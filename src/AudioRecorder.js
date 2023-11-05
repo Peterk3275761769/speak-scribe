@@ -41,12 +41,15 @@ class AudioRecorder extends Component {
         body: formData,
       });
 
-      if (response.ok) {
-        // Successfully sent the audio data to the backend
+      if (response.status === 200) {
+        const data = await response.json();
+        console.log('message', data);
       } else {
+        console.error('Response status is not OK:', response.status);
         // Handle error if needed
       }
     } catch (error) {
+      console.error('Error:', error);
       // Handle network or other errors
     }
   }

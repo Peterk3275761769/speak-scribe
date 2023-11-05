@@ -1,8 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 from audioProcess import audioprocess
 
 app = Flask(__name__)
+
+cors = CORS(app, resources={r"*": {"origins": "*"}})
 
 @app.route('/upload-audio', methods=['POST'])
 def upload_audio():
@@ -16,8 +19,9 @@ def upload_audio():
 
     # Process the audio file, e.g., save it, perform analysis, etc.
     # Ensure you have a folder for audio storage if needed.
-    print(audio_file.filename)
-    return jsonify({'message': audioprocess(audio_file)})
+    #audioprocess(audio_file)
+    #return jsonify({'message': audioprocess(audio_file)})
+    return jsonify({'message': audioprocess(audio_file)}), 200
 
 if __name__ == '__main__':
     app.run()

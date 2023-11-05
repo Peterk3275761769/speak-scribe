@@ -1,0 +1,4 @@
+Flask
+openai
+google-cloud
+google-cloud-speech
