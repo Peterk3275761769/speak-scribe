@@ -53,7 +53,3 @@ def audioprocess(audio_file):
     print(completion.choices[0].message.content)
     return completion.choices[0].message.content
 
-    
-
-
-#print(audioprocess("audiotest2.wav"))
