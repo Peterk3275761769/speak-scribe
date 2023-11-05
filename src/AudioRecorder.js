@@ -25,17 +25,29 @@ class AudioRecorder extends Component {
         url: recordedBlob.blobURL,
       },
     });
+
+    if (recordedBlob.blob) {
+      this.sendAudioToBackend(recordedBlob.blob);
+    }
   }
 
-  downloadAudio = () => {
-    const { audioData } = this.state;
-    if (audioData.blob) {
-      const link = document.createElement('a');
-      link.href = audioData.url;
-      link.download = 'recorded-audio.wav';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+  sendAudioToBackend = async (audioBlob) => {
+    const formData = new FormData();
+    formData.append('audio', audioBlob, 'recorded-audio.flac');
+
+    try {
+      const response = await fetch('http://127.0.0.1:5000/upload-audio', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        // Successfully sent the audio data to the backend
+      } else {
+        // Handle error if needed
+      }
+    } catch (error) {
+      // Handle network or other errors
     }
   }
 
@@ -46,12 +58,11 @@ class AudioRecorder extends Component {
           record={this.state.isRecording}
           onStop={this.onStop}
           onStart={this.onStart}
-          mimeType="audio/wav"
+          mimeType="audio/flac"
         />
         <button onClick={this.state.isRecording ? this.onStop : this.onStart}>
           {this.state.isRecording ? 'Stop Recording' : 'Start Recording'}
         </button>
-        <button onClick={this.downloadAudio}>Download Recorded Audio</button>
       </div>
     );
   }
