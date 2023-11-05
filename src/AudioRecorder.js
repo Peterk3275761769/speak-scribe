@@ -35,20 +35,24 @@ class AudioRecorder extends Component {
     const formData = new FormData();
     formData.append('audio', audioBlob, 'recorded-audio.flac');
 
-    try {
-      const response = await fetch('http://127.0.0.1:5000/upload-audio', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (response.ok) {
-        // Successfully sent the audio data to the backend
-      } else {
-        // Handle error if needed
+      try {
+        const response = await fetch('http://127.0.0.1:5000/upload-audio', {
+          method: 'POST',
+          body: formData,
+        });
+  
+        if (response.status === 200) {
+          const data = await response.json();
+          console.log('message', data);
+        } else {
+          console.error('Response status is not OK:', response.status);
+          // Handle error if needed
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        // Handle network or other errors
       }
-    } catch (error) {
-      // Handle network or other errors
-    }
+
   }
 
   render() {
