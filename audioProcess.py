@@ -3,7 +3,7 @@ import openai
 from google.cloud import storage
 from google.cloud import speech
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = # os.getenv("OPENAI_API_KEY")
 
 def audioprocess(audio_file):
 
@@ -46,7 +46,7 @@ def audioprocess(audio_file):
             {"role": "system",
             "content": """You are my assistant and I am rambling to you about all the tasks I need to do. 
             Create a list of bullet points of all the different tasks I told you. If a date (including things like "next monday") has been mentioned include it
-            in parentheses at the end of the line, if a specific date is given give it in "(dd-mm)" format."""},
+            in parentheses at the end of the line."""},
             {"role": "user", "content": response}
         ]
     )
