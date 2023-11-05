@@ -3,7 +3,7 @@ import openai
 from google.cloud import storage
 from google.cloud import speech
 
-openai.api_key = "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"
+openai.api_key = #get the key
 
 def audioprocess(audio_file):
 
@@ -38,21 +38,21 @@ def audioprocess(audio_file):
     )
     response = speech_to_text(config, audio)
     print(response)
-    #print(str(response))
+
 
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system",
             "content": """You are my assistant and I am rambling to you about all the tasks I need to do. 
-            Create a list of bullet points of all the different tasks I told you. If a date has been mentioned include it
-            in parentheses at the end of the line."""},
+            Create a list of bullet points of all the different tasks I told you. If a date (including things like "next monday") has been mentioned include it
+            in parentheses at the end of the line, if a specific date is given give it in "(dd-mm)" format."""},
             {"role": "user", "content": response}
         ]
     )
     print(completion.choices[0].message.content)
-    #return completion.choices[0].message.content
-    return "baka"
+    return completion.choices[0].message.content
+
     
 
 

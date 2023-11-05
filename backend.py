@@ -16,7 +16,6 @@ def upload_audio():
 
     # Process the audio file, e.g., save it, perform analysis, etc.
     # Ensure you have a folder for audio storage if needed.
-    print(audio_file.filename)
     return jsonify({'message': audioprocess(audio_file)})
 
 if __name__ == '__main__':
