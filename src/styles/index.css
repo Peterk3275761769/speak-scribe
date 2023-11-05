@@ -1,0 +1,24 @@
+body{
+  background-color: #2b2d42;
+}
+
+.recorder{
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 40vh;
+}
+
+.record-button{
+  -webkit-user-drag: none;
+  margin: auto;
+  width: 4vw;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.record-button.recording{
+  transform: scale(0.8)
+}
+
