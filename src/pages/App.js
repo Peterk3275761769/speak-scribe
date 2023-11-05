@@ -1,7 +1,4 @@
-
-import './App.css';
-
-import AudioRecorder from './AudioRecorder';
+import AudioRecorder from '../AudioRecorder';
 
 
 function App() {
@@ -13,7 +10,3 @@ function App() {
 }
 
 export default App;
-
-
-
-

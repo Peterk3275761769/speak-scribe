@@ -1,0 +1,48 @@
+body{
+  background-color: #2b2d42;
+}
+
+.recorder {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 3vh;
+  background-color: #464a55;
+  border-radius: 20px;
+}
+
+.record-button{
+  -webkit-user-drag: none;
+  margin: auto;
+  padding-top: 20px;
+  width: 75px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.record-button.recording{
+  transform: scale(0.8)
+}
+
+textarea{
+  resize: none;
+}
+
+.output-area{
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: white;
+  height: 30vh;
+  overflow-y: scroll;
+  font-size: large;
+  line-height: 30px;
+  overflow-wrap: break-word;
+}
+
+.big-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5vh;
+}

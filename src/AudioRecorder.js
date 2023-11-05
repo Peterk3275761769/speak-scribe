@@ -10,6 +10,7 @@ class AudioRecorder extends Component {
         blob: null,
         url: null,
       },
+      outputText: `TO-DO...`,
     };
   }
 
@@ -35,41 +36,58 @@ class AudioRecorder extends Component {
     const formData = new FormData();
     formData.append('audio', audioBlob, 'recorded-audio.flac');
 
-      try {
-        const response = await fetch('http://127.0.0.1:5000/upload-audio', {
-          method: 'POST',
-          body: formData,
-        });
-  
-        if (response.status === 200) {
-          const data = await response.json();
-          console.log('message', data);
-        } else {
-          console.error('Response status is not OK:', response.status);
-          // Handle error if needed
-        }
-      } catch (error) {
-        console.error('Error:', error);
-        // Handle network or other errors
-      }
+    try {
+      const response = await fetch('http://127.0.0.1:5000/upload-audio', {
+        method: 'POST',
+        body: formData,
+      });
 
+      if (response.status === 200) {
+        const data = await response.json();
+        console.log('message', data);
+        this.setState({ outputText: data.message });
+      } else {
+        console.error('Response status is not OK:', response.status);
+        // Handle error if needed
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle network or other errors
+    }
+  }
+
+  toggleRecording = () => {
+    this.setState((prevState) => ({ isRecording: !prevState.isRecording }));
   }
 
   render() {
     return (
-      <div>
-        <ReactMic
-          record={this.state.isRecording}
-          onStop={this.onStop}
-          onStart={this.onStart}
-          mimeType="audio/flac"
-        />
-        <button onClick={this.state.isRecording ? this.onStop : this.onStart}>
-          {this.state.isRecording ? 'Stop Recording' : 'Start Recording'}
-        </button>
-      </div>
+      <>
+        <div className='big-logo'>
+          <img src='speakscribe-logo.png'/>
+        </div>
+        <div className='recorder'>
+          <pre className='output-area'>
+            {this.state.outputText}
+          </pre>
+
+          <ReactMic
+            record={this.state.isRecording}
+            onStop={this.onStop}
+            onStart={this.onStart}
+            mimeType="audio/flac"
+          />
+
+          <img
+            className={`record-button ${this.state.isRecording ? 'recording' : ''}`}
+            src={this.state.isRecording ? 'stop_button.png' : 'record_button.png'}
+            alt={this.state.isRecording ? 'Stop Recording' : 'Start Recording'}
+            onClick={this.toggleRecording}
+          />
+        </div>
+      </>
     );
   }
 }
-
+ 
 export default AudioRecorder;
